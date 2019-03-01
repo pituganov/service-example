@@ -1,0 +1,35 @@
+version: 1
+
+# ЛОГИРОВАНИЕ
+# форматы вывода логов
+formatters:
+  simpleFormatter:
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+
+# обработчики логов
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: simpleFormatter
+    stream: ext://sys.stdout
+    level: INFO
+  logfile:
+    class: logging.FileHandler
+    filename: ./src/logs/logs.log
+    formatter: simpleFormatter
+    level: INFO
+
+# логеры
+loggers:
+  api:
+    level: INFO
+    handlers: [console, logfile]
+    propagate: false
+  api.service_info:
+    level: INFO
+    handlers: [console]
+    propagate: false
+
+info:
+  debug: true
+  api_version: "0.1"
