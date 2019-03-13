@@ -15,7 +15,7 @@ handlers:
     level: INFO
   logfile:
     class: logging.FileHandler
-    filename: ./src/logs/logs.log
+    filename: ./logs/logs.log
     formatter: simpleFormatter
     level: INFO
 
