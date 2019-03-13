@@ -1,0 +1,27 @@
+version: "2"
+
+services:
+    api:
+      restart: always
+      build:
+        context: ./src
+      ports:
+        - 8080:8080
+      depends_on:
+         - pgdb
+      links:
+         - pgdb
+      volumes:
+        - ./src:/usr/src/app
+      environment:
+        TZ: Asia/Yekaterinburg
+
+    pgdb:
+      restart: always
+      image: postgres:10.1
+      ports:
+         - 5432:5432
+      volumes:
+         - ./pgdb:/var/lib/postgresql/data
+      environment:
+         TZ: Asia/Yekaterinburg
